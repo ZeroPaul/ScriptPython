@@ -17,6 +17,7 @@ def buy_sandwich(ts):
 
     while p:
         num = 0
+        print("Realize su orden")
         for product, detail in o.items():
             num += 1
             print(
@@ -39,6 +40,7 @@ def buy_sandwich(ts):
             p = True
     
     print("______________________________________________________")
+    print("El Nufrago Satisfecho!!!")
     print("Nota de Pedido")
     print("______________________________________________________")
     print("Cant. | Producto        | Precio Unit.  | Sub. Total")
@@ -70,6 +72,6 @@ def buy_sandwich(ts):
     print("¡Gracias por su compra!")
 
 
-type_sandwich = [['simple', 12], ['doble', 16], ['triple', 20], ]
+type_sandwich = [['simple', 20], ['doble', 25], ['triple', 28], ]
 
 buy_sandwich(type_sandwich)
