@@ -1,49 +1,75 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
+def buy_sandwich(ts):
+    o = {}
+    d = {}
+    total = 0
 
-def invoice_sandwich():
-    s = 0
-    d = 0
-    t = 0
+    for t in ts:
+        d['price'] = int(t[1])
+        d['quantity'] = 0
+        name_product = (t[0])
+        o[name_product] = d
+        d = {}
 
     p = True
 
     while p:
-        print("Elige tu sandwich")
-        print("1. sandwich simple")
-        print("2. sandwich doble")
-        print("3. sandwich triple")
-        c = input("sandwich: ")
-        if c == 1:
-            pass
-
-        u = input("cuantos quieres:")
+        num = 0
+        for product, detail in o.items():
+            num += 1
+            print(
+                "%s. sandwich %s | cantidad %s" % 
+                (num, product, detail.get('quantity'))
+            )
+        choice_number = input("opcion: ")
+        order_quantity = input("cantidad: ")
+        choice = ts[(int(choice_number)-1)]
+        previous_quantity = o.get(choice[0]).get('quantity')
+        o.get(choice[0])['quantity'] =  int(order_quantity) \
+                                        + int(previous_quantity)
 
         print("deseas pedir mas sandwiches")
-        o = input("si / no :")
-        if o == "no":
+        op = input("si / no :")
+        if op == "no":
             p = False
+            print("Calculando pedido...")
         else:
             p = True
-
-
-
-# invoice_sandwich()
-
-type_sandwich = ['simple', 'doble', 'triple']
-# order = {}
-
-def buy_sandwich(ts):
-    o = {}
-    for t in ts:
-        o[t] = 0
-
-    num = 0
-    for i in ts:
-        num += 1
-        print("%s. sandwich %s | cantidad %s" % (num, i, o.get(i)))
-    s = input("opcion: ")
     
+    print("______________________________________________________")
+    print("Nota de Pedido")
+    print("______________________________________________________")
+    print("Cant. | Producto        | Precio Unit.  | Sub. Total")
+    for pt, dl in o.items():
+        if dl.get('quantity') > 0:
+            st = int(dl.get('quantity')) * int(dl.get('price'))
+            total += st
+            print(" %s    sandwich %s     %s             %s" % 
+                (dl.get('quantity'), pt, dl.get('price'), st)
+            )
+    print("______________________________________________________")
+    print("                                 Total  |  %s" % (total))
+    print("sin metodo de pago.")
+    print("")
+    payment_type = input("Modo de pago tarjeta(t)/efectivo(e): ")
+    if payment_type == "t":
+        tt = total*(5/100)
+        total += tt
+        print("Cobro Adicional")
+        print("______________________________________________________")
+        print("Metodo de Pago tarjeta                   |  %s" % (tt)) 
+    elif payment_type == "e":
+        tt = 0
+        print("______________________________________________________")
+        print("Metodo de Pago Efectivo                  |  %s" % (tt)) 
+
+    print("______________________________________________________")
+    print("                                  Total  |  %s" % (total))
+    print("¡Gracias por su compra!")
 
 
+type_sandwich = [['simple', 12], ['doble', 16], ['triple', 20], ]
 
 buy_sandwich(type_sandwich)
