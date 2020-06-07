@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+type_sandwich = [['simple', 20], ['doble', 25], ['triple', 28], ['cuadruple', 30], ]
 def buy_sandwich(ts):
     o = {}
     d = {}
@@ -72,6 +73,7 @@ def buy_sandwich(ts):
     print("¡Gracias por su compra!")
 
 
-type_sandwich = [['simple', 20], ['doble', 25], ['triple', 28], ]
+type_sandwich = [['simple', 20], ['doble', 25], ['triple', 28], ['cuadruple', 30], ]
+# type_sandwich = [['simple', 20], ['doble', 25], ['triple', 28], ]
 
 buy_sandwich(type_sandwich)
